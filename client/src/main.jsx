@@ -8,6 +8,7 @@ import News from './components/News'
 import Create from './components/Create'
 import NewInfo from './components/NewInfo'
 import Eliza from './components/Eliza'
+import ConfirmNews from './components/ConfirmNews'
 import './index.css'
 
 const GlobalStyle = createGlobalStyle`
@@ -28,6 +29,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/create" element={<Create />} />
         <Route path="/newinfo" element={<NewInfo />} />
         <Route path="/eliza" element={<Eliza />} />
+        <Route path="/confirmnews" element={<ConfirmNews />} />
       </Routes>
         </BrowserRouter>
       </React.StrictMode>

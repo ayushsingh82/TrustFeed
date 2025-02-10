@@ -63,12 +63,12 @@ function NewInfo() {
       })
 
       if (info.offset.x > 0) {
-        navigate('/buy-bet')
+        navigate('/confirmnews')
         return
       }
 
       if (currentIndex >= questions.length - 1) {
-        navigate('/profile')
+        navigate('/news')
         return
       }
 
@@ -86,7 +86,7 @@ function NewInfo() {
   }
 
   const handleTickClick = () => {
-    navigate('/buy-bet')
+    navigate('/confirmnews')
   }
 
   const handleSend = async (e) => {

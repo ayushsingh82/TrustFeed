@@ -150,7 +150,7 @@ function Eliza() {
             <FaPlus size={36} />
           </button>
           <button 
-            onClick={() => navigate('/profile')}
+            onClick={() => navigate('/news')}
             className="flex flex-col items-center gap-2 text-black"
           >
             <FaUser size={32} />
