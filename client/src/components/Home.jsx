@@ -1,33 +1,65 @@
-import React from 'react';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
-const Home = () => {
+const HomeContainer = styled.div`
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #93c5fd;  /* Tailwind blue-300 */
+`;
+
+const Logo = styled.div`
+  width: 120px;
+  height: 120px;
+  background-color: #2c3e50;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  cursor: pointer;
+  
+  &:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+  }
+`;
+
+const LogoText = styled.span`
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+`;
+
+const Tagline = styled.h2`
+  color: #2c3e50;
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+  text-align: center;
+  max-width: 600px;
+  line-height: 1.4;
+`;
+
+function Home() {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/news');
+  };
+
   return (
-    <div className="landing-container">
-      <section className="hero-section">
-        <div className="logo-container">
-          <img 
-            src="https://iq.wiki/_next/image?url=https%3A%2F%2Fipfs.everipedia.org%2Fipfs%2FQmTFHqfakxRqf7AsA7pZJ5iQnRFXyRrFBbe2ASjocZc492&w=3840&q=95"
-            alt="Eigen Layer Logo" 
-          />
-          <img 
-            src="https://miro.medium.com/v2/resize:fit:1400/0*FBqY7vMvkpoBFKLT"
-            alt="Eliza OS Logo" 
-          />
-        </div>
-        <h1 className="hero-title ">
-          Verifiable AI Agents on Eigen Layer
-        </h1>
-        <p className="hero-subtitle">
-          Building the future of trustless AI verification through the power of Eigen Layer 
-          and Eliza OS. Create, deploy, and verify AI agents with unprecedented transparency 
-          and reliability.
-        </p>
-        <button className="cta-button">
-          Get Started
-        </button>
-      </section>
-    </div>
+    <HomeContainer>
+      <Logo onClick={handleClick}>
+        <LogoText>DN</LogoText>
+      </Logo>
+      <Tagline>
+        Decentralized News: Transparent, Unbiased, Verified
+      </Tagline>
+    </HomeContainer>
   );
-};
+}
 
-export default Home;
+export default Home; 
