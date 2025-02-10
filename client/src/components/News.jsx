@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaChartLine, FaPlus, FaUser } from 'react-icons/fa'
+import { FaNewspaper, FaPlus, FaUser } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 // import { ConnectButton } from './ConnectButton'
 
@@ -82,11 +82,11 @@ function Profile() {
       <div className="w-full max-w-3xl">
         <div className="bg-pink-300 rounded-2xl p-6 border-2 border-pink-500 flex justify-between items-center px-16">
           <button 
-            onClick={() => navigate('/live-bets')}
+            onClick={() => navigate('/newinfo')}
             className="flex flex-col items-center gap-2 text-black"
           >
-            <FaChartLine size={32} />
-            <span className="text-sm">Live Bets</span>
+            <FaNewspaper size={32} />
+            <span className="text-sm">News</span>
           </button>
           <button 
             onClick={() => navigate('/create')}

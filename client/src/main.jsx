@@ -6,6 +6,8 @@ import { createGlobalStyle } from 'styled-components'
 import Home from './components/Home'
 import News from './components/News'
 import Create from './components/Create'
+import NewInfo from './components/NewInfo'
+import Eliza from './components/Eliza'
 import './index.css'
 
 const GlobalStyle = createGlobalStyle`
@@ -24,7 +26,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/" element={<Home />} />
         <Route path="/news" element={<News />} />
         <Route path="/create" element={<Create />} />
+        <Route path="/newinfo" element={<NewInfo />} />
+        <Route path="/eliza" element={<Eliza />} />
       </Routes>
-    </BrowserRouter>
-  </React.StrictMode>
+        </BrowserRouter>
+      </React.StrictMode>
 )
