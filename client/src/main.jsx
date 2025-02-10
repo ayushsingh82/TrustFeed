@@ -5,6 +5,7 @@ import { Routes, Route } from 'react-router-dom'
 import { createGlobalStyle } from 'styled-components'
 import Home from './components/Home'
 import News from './components/News'
+import Create from './components/Create'
 import './index.css'
 
 const GlobalStyle = createGlobalStyle`
@@ -22,6 +23,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/news" element={<News />} />
+        <Route path="/create" element={<Create />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

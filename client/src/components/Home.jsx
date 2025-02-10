@@ -1,65 +1,44 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
-const HomeContainer = styled.div`
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #93c5fd;  /* Tailwind blue-300 */
-`;
-
-const Logo = styled.div`
-  width: 120px;
-  height: 120px;
-  background-color: #2c3e50;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
-  cursor: pointer;
-  
-  &:hover {
-    transform: scale(1.05);
-    transition: transform 0.3s ease;
-  }
-`;
-
-const LogoText = styled.span`
-  color: white;
-  font-size: 2rem;
-  font-weight: bold;
-`;
-
-const Tagline = styled.h2`
-  color: #2c3e50;
-  font-size: 1.5rem;
-  margin-bottom: 30px;
-  text-align: center;
-  max-width: 600px;
-  line-height: 1.4;
-`;
 
 function Home() {
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    navigate('/news');
-  };
+  const navigate = useNavigate()
 
   return (
-    <HomeContainer>
-      <Logo onClick={handleClick}>
-        <LogoText>DN</LogoText>
-      </Logo>
-      <Tagline>
-        Decentralized News: Transparent, Unbiased, Verified
-      </Tagline>
-    </HomeContainer>
-  );
+    <div className="min-h-screen bg-pink-200 flex items-center">
+      <div className="container mx-auto px-4">
+        <div className="max-w-3xl mx-auto text-center">
+          <div className="text-4xl mb-4">
+            🚀 🎯 🎊
+          </div>
+          <h1 className="text-3xl md:text-3xl font-bold text-pink-600 mb-8">
+            Fileverse 
+          </h1>
+          <p className="text-xl text-black mb-12">
+            <span className=" px-4 py-2 rounded-lg text-sm font-bold">
+              Prediction market on Flow powered by eliza AI <br/> and polymarket insights.
+            </span>
+
+            <hr className='mt-[10px] mb-[10px] border-blue-500/30'/>
+            
+            <span className="bg-pink-400 px-4 py-2 rounded-lg mt-[20px] text-lg">
+              Predict the future and earn rewards.
+            </span>
+          </p>
+          <div className="flex justify-center gap-4">
+          
+            <button 
+              onClick={() => navigate('/news')}
+              className="bg-blue-600 text-white font-bold py-3 px-8 rounded-2xl border-2 border-blue-600 transition-colors text-xl"
+            >
+              Start
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
 }
 
-export default Home; 
+export default Home
