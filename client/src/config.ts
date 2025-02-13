@@ -1,41 +1,38 @@
 import { createPublicClient, createWalletClient , http, custom } from 'viem'
 import { privateKeyToAccount } from 'viem/accounts'
-import { flowTestnet } from 'viem/chains'
+import { flowTestnet , gnosisChiado} from 'viem/chains'
 
-// Custom Flow Testnet configuration
-export const flowTestnetTry = {
-  id: 545,
-  name: 'Flow Testnet',
-  network: 'flow-testnet',
+
+
+
+const chiadoTestnet = {
+  id: 10200,
+  name: 'Gnosis Chiado',
+  network: 'chiado',
   nativeCurrency: {
     decimals: 18,
-    name: 'Flow',
-    symbol: 'FLOW',
+    name: 'XDAI',
+    symbol: 'XDAI',
   },
   rpcUrls: {
     default: {
-      http: ['https://testnet.evm.nodes.onflow.org'],
-      
+      http: ['https://gnosis-chiado.drpc.org']
     },
     public: {
-      http: ['https://testnet.evm.nodes.onflow.org'],
-    },
-  },
-  blockExplorers: {
-    default: { name: 'FlowScan', url: 'https://testnet.flowscan.org' },
-  },
-  testnet: true,
+      http: ['https://gnosis-chiado.drpc.org']
+    }
+  }
 }
 
 // Public client
 export const publicClient = createPublicClient({
-  chain: flowTestnet,
+  chain: gnosisChiado,
   transport: http()
 })
 
 // Wallet client
 export const walletClient = createWalletClient({
-  chain: flowTestnet,
+  chain: chiadoTestnet,
   transport: custom(window.ethereum)
 })
 
@@ -43,7 +40,7 @@ export const walletClient = createWalletClient({
 export const getWalletClient = () => {
   if (typeof window !== 'undefined' && window.ethereum) {
     return createWalletClient({
-      chain: flowTestnet,
+      chain: gnosisChiado,
       transport: custom(window.ethereum),
       account: window.ethereum.selectedAddress
     })
@@ -52,17 +49,7 @@ export const getWalletClient = () => {
 }
 
 // Chain configuration for wallet connection
-export const chainConfig = {
-  chainId: '0x221', // 545 in hex
-  chainName: 'Flow Testnet',
-  nativeCurrency: {
-    name: 'Flow',
-    symbol: 'FLOW',
-    decimals: 18
-  },
-  rpcUrls: ['https://testnet.evm.nodes.onflow.org'],
-  blockExplorerUrls: ['https://testnet.flowscan.org']
-}
+
 
 // JSON-RPC Account
 // export const [account] = await walletClient.getAddresses()

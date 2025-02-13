@@ -8,21 +8,21 @@ import { usePrivy } from '@privy-io/react-auth'
 import { createPublicClient , http } from 'viem'
 import { createWalletClient ,custom } from 'viem'
 
-const flowTestnet = {
-  id: 545,
-  name: 'Flow Testnet',
-  network: 'flow-testnet',
+const chiadoTestnet = {
+  id: 10200,
+  name: 'Gnosis Chiado',
+  network: 'chiado',
   nativeCurrency: {
     decimals: 18,
-    name: 'FLOW',
-    symbol: 'FLOW',
+    name: 'XDAI',
+    symbol: 'XDAI',
   },
   rpcUrls: {
     default: {
-      http: ['https://testnet.evm.nodes.onflow.org']
+      http: ['https://gnosis-chiado.drpc.org']
     },
     public: {
-      http: ['https://testnet.evm.nodes.onflow.org']
+      http: ['https://gnosis-chiado.drpc.org']
     }
   }
 }
@@ -54,41 +54,41 @@ function ConfirmNews() {
         throw new Error('Please enter an amount')
       }
 
-      // Convert amount to BigInt (1 FLOW = 1e18 wei)
+      // Convert amount to BigInt (1 XDAI = 1e18 wei)
       const amountInWei = BigInt(Math.floor(Number(amount) * 1e18))
 
       // Create public client
       const publicClient = createPublicClient({
-        chain: flowTestnet,
+        chain: chiadoTestnet,
         transport: http()
       })
 
       // Create wallet client
       const walletClient = createWalletClient({
-        chain: flowTestnet,
+        chain: chiadoTestnet,
         transport: custom(window.ethereum)
       })
 
-      // Switch to Flow Testnet
+      // Switch to Gnosis Chiado Testnet
       try {
         await window.ethereum.request({
           method: 'wallet_switchEthereumChain',
-          params: [{ chainId: '0x221' }]
+          params: [{ chainId: '0x27d8' }]
         })
       } catch (switchError) {
         if (switchError.code === 4902) {
           await window.ethereum.request({
             method: 'wallet_addEthereumChain',
             params: [{
-              chainId: '0x221',
-              chainName: 'Flow Testnet',
+              chainId: '0x27d8',
+              chainName: 'Gnosis Chiado',
               nativeCurrency: {
-                name: 'FLOW',
-                symbol: 'FLOW',
+                name: 'XDAI',
+                symbol: 'XDAI',
                 decimals: 18
               },
-              rpcUrls: ['https://testnet.evm.onflow.org'],
-              blockExplorerUrls: ['https://testnet.flowscan.org']
+              rpcUrls: ['https://gnosis-chiado.drpc.org'],
+              blockExplorerUrls: ['https://blockscout.chiadochain.net']
             }]
           })
         }
@@ -96,8 +96,8 @@ function ConfirmNews() {
 
       // Get current chain ID to verify
       const chainId = await walletClient.getChainId()
-      if (chainId !== 545) {
-        throw new Error('Please switch to Flow Testnet')
+      if (chainId !== 10200) {
+        throw new Error('Please switch to Gnosis Chiado Testnet')
       }
 
       // Prepare the contract write
@@ -165,7 +165,7 @@ function ConfirmNews() {
             {/* Amount Input */}
             <div className="bg-pink-200 p-5 rounded-xl border border-pink-400">
               <label className="block text-black text-sm font-semibold mb-2">
-                Amount (FLOW)
+                Amount (XDAI)
               </label>
               <input
                 type="number"

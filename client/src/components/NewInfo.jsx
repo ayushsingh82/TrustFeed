@@ -6,6 +6,28 @@ import { motion, useMotionValue, useTransform, useAnimation } from 'framer-motio
 import { GoogleGenerativeAI } from "@google/generative-ai"
 import { publicClient } from '../config'
 import { wagmiAbi } from '../abi'
+import styled from 'styled-components'
+
+// Add this near the top of the component
+const VerifyButton = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: linear-gradient(to right, #22c55e, #16a34a);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+    background: linear-gradient(to right, #16a34a, #15803d);
+  }
+`;
 
 function NewInfo() {
   const navigate = useNavigate()
@@ -135,6 +157,15 @@ function NewInfo() {
     })
   }
 
+  const handleVerify = async () => {
+    try {
+      // Gnosis verification logic will go here
+      console.log("Verifying with Gnosis...");
+    } catch (error) {
+      console.error("Verification failed:", error);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-pink-200 flex flex-col items-center justify-center p-8">
       {/* Header */}
@@ -170,7 +201,15 @@ function NewInfo() {
             onDragEnd={handleDragEnd}
             className="w-full cursor-grab active:cursor-grabbing"
           >
-            <div className="bg-gradient-to-br from-pink-400 to-purple-500 rounded-2xl overflow-hidden shadow-xl">
+            <div className="bg-gradient-to-br from-pink-400 to-purple-500 rounded-2xl overflow-hidden shadow-xl relative">
+              {/* Add Verify Button */}
+              <VerifyButton
+                onClick={handleVerify}
+                className="absolute top-4 right-4 z-10"
+              >
+                Verify with Gnosis
+              </VerifyButton>
+
               {/* Background Pattern */}
               <div className="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSIjZmZmIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxjaXJjbGUgY3g9IjIwIiBjeT0iMjAiIHI9IjIiLz48L2c+PC9zdmc+')]"></div>
 

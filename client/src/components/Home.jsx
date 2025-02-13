@@ -16,18 +16,18 @@ function Home() {
             Fileverse 
           </h1>
           <p className="text-xl text-black mb-12">
-            <span className=" px-4 py-2 rounded-lg text-sm font-bold">
-              Prediction market on Flow powered by eliza AI <br/> and polymarket insights.
+            <span className="px-4 py-2 rounded-lg text-sm font-bold">
+              Self-Sovereign AI-Generated News Aggregator powered by 
+              <br/> Eliza AI & Fileverse.
             </span>
 
             <hr className='mt-[10px] mb-[10px] border-blue-500/30'/>
             
             <span className="bg-pink-400 px-4 py-2 rounded-lg mt-[20px] text-lg">
-              Predict the future and earn rewards.
+              Verified, Unbiased, Onchain.
             </span>
           </p>
           <div className="flex justify-center gap-4">
-          
             <button 
               onClick={() => navigate('/news')}
               className="bg-blue-600 text-white font-bold py-3 px-8 rounded-2xl border-2 border-blue-600 transition-colors text-xl"

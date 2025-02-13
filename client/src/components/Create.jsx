@@ -11,21 +11,21 @@ import { parseGwei } from 'viem'
 import { createPublicClient , http } from 'viem'
 
 
-const flowTestnet = {
-  id: 545,
-  name: 'Flow Testnet',
-  network: 'flow-testnet',
+const chiadoTestnet = {
+  id: 10200,
+  name: 'Gnosis Chiado',
+  network: 'chiado',
   nativeCurrency: {
     decimals: 18,
-    name: 'FLOW',
-    symbol: 'FLOW',
+    name: 'XDAI',
+    symbol: 'XDAI',
   },
   rpcUrls: {
     default: {
-      http: ['https://testnet.evm.nodes.onflow.org']
+      http: ['https://gnosis-chiado.drpc.org']
     },
     public: {
-      http: ['https://testnet.evm.nodes.onflow.org']
+      http: ['https://gnosis-chiado.drpc.org']
     }
   }
 }
@@ -38,9 +38,7 @@ function Create() {
   const { user } = usePrivy()
   
   const [question, setQuestion] = useState('')
-  const [option1, setOption1] = useState('Yes')
-  const [option2, setOption2] = useState('No')
-  const [endTime, setEndTime] = useState('')
+  const [description, setDescription] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
@@ -59,36 +57,36 @@ function Create() {
 
       // Create public client
       const publicClient = createPublicClient({
-        chain: flowTestnet,
+        chain: chiadoTestnet,
         transport: http()
       })
 
       // Create wallet client
       const walletClient = createWalletClient({
-        chain: flowTestnet,
+        chain: chiadoTestnet,
         transport: custom(window.ethereum)
       })
 
-      // Switch to Flow Testnet
+      // Switch to Gnosis Chiado Testnet
       try {
         await window.ethereum.request({
           method: 'wallet_switchEthereumChain',
-          params: [{ chainId: '0x221' }]
+          params: [{ chainId: '0x27d8' }]
         })
       } catch (switchError) {
         if (switchError.code === 4902) {
           await window.ethereum.request({
             method: 'wallet_addEthereumChain',
             params: [{
-              chainId: '0x221',
-              chainName: 'Flow Testnet',
+              chainId: '0x27d8',
+              chainName: 'Gnosis Chiado',
               nativeCurrency: {
-                name: 'FLOW',
-                symbol: 'FLOW',
+                name: 'XDAI',
+                symbol: 'XDAI',
                 decimals: 18
               },
-              rpcUrls: ['https://testnet.evm.onflow.org'],
-              blockExplorerUrls: ['https://testnet.flowscan.org']
+              rpcUrls: ['https://gnosis-chiado.drpc.org'],
+              blockExplorerUrls: ['https://blockscout.chiadochain.net']
             }]
           })
         }
@@ -96,8 +94,8 @@ function Create() {
 
       // Get current chain ID to verify
       const chainId = await walletClient.getChainId()
-      if (chainId !== 545) {
-        throw new Error('Please switch to Flow Testnet')
+      if (chainId !== 10200) {
+        throw new Error('Please switch to Gnosis Chiado Testnet')
       }
 
       // Prepare the contract write
@@ -154,67 +152,38 @@ function Create() {
         <div className="bg-pink-300 rounded-2xl p-8 border-2 border-pink-500">
           <div className="flex items-center justify-center gap-3 mb-8">
             <FaQuestionCircle className="text-pink-400 text-3xl" />
-            <h2 className="text-2xl font-bold text-white text-center">Create New Prediction</h2>
+            <h2 className="text-2xl font-bold text-white text-center">Add news's onchain</h2>
           </div>
           
           {error && <p className="text-red-500 mb-4 text-center">{error}</p>}
           {success && <p className="text-green-500 mb-4 text-center">{success}</p>}
           
           <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Description */}
+            {/* Title Input */}
             <div className="bg-pink-200 p-5 rounded-xl border border-pink-400">
               <label className="block text-black text-sm font-semibold mb-2">
-                What's your prediction?
+                News Title
               </label>
-              <textarea
+              <input
                 value={question}
                 onChange={(e) => setQuestion(e.target.value)}
                 className="w-full px-4 py-3 rounded-xl bg-white border-2 border-pink-400 text-black placeholder-gray-500 focus:outline-none focus:border-pink-500 transition-colors"
-                placeholder="E.g., Will Bitcoin reach $100k?"
-                rows="2"
+                placeholder="E.g., SpaceX Successfully Launches Starship for Mars Mission"
                 required
               />
             </div>
 
-            {/* Options */}
-            <div className="bg-pink-200 p-5 rounded-xl border border-pink-400">
-              <label className="block text-black text-sm font-semibold mb-3">
-                Prediction Options
-              </label>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <div className="text-xs text-black mb-2">Option 1</div>
-                  <input
-                    type="text"
-                    value={option1}
-                    onChange={(e) => setOption1(e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl bg-white border-2 border-pink-400 text-black placeholder-gray-500 focus:outline-none focus:border-pink-500 transition-colors"
-                    placeholder="Yes"
-                  />
-                </div>
-                <div>
-                  <div className="text-xs text-black mb-2">Option 2</div>
-                  <input
-                    type="text"
-                    value={option2}
-                    onChange={(e) => setOption2(e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl bg-white border-2 border-pink-400 text-black placeholder-gray-500 focus:outline-none focus:border-pink-500 transition-colors"
-                    placeholder="No"
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* End Time */}
+            {/* Description Input */}
             <div className="bg-pink-200 p-5 rounded-xl border border-pink-400">
               <label className="block text-black text-sm font-semibold mb-2">
-                When will this prediction end?
+                News Description
               </label>
-              <input
-                type="datetime-local"
-                value={endTime}
-                onChange={(e) => setEndTime(e.target.value)}
-                className="w-full px-4 py-2.5 rounded-xl bg-white border-2 border-pink-400 text-black placeholder-gray-500 focus:outline-none focus:border-pink-500 transition-colors"
+              <textarea
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                className="w-full px-4 py-3 rounded-xl bg-white border-2 border-pink-400 text-black placeholder-gray-500 focus:outline-none focus:border-pink-500 transition-colors"
+                placeholder="Enter detailed news description..."
+                rows="4"
                 required
               />
             </div>
@@ -228,7 +197,7 @@ function Create() {
                 transform hover:scale-[1.02] active:scale-[0.98] shadow-lg
                 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
-              {loading ? 'Creating Prediction...' : 'Create Prediction'}
+              {loading ? 'Adding News...' : 'Add News'}
             </button>
           </form>
         </div>

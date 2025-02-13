@@ -47,17 +47,17 @@ function Profile() {
       {/* Recent Activity */}
       <div className="w-full max-w-3xl mb-16">
         <div className="bg-pink-300 rounded-2xl p-6 border-2 border-pink-500">
-          <h2 className="text-2xl font-bold text-black mb-4 text-center">Recent Activities</h2>
+          <h2 className="text-2xl font-bold text-black mb-4 text-center">Recent News</h2>
           <div className="text-black space-y-4">
             <div className="border-b border-pink-800/60 py-3">
               <div className="flex justify-between items-center">
                 <div>
-                  <p className="font-medium">Placed 0.5 FLOW</p>
-                  <p className="text-sm text-gray-700">"Will I win flow track"</p>
+                  <p className="font-medium">Elon Musk's SpaceX</p>
+                  <p className="text-sm text-gray-700">"SpaceX Successfully Launches Starship for Mars Mission"</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-sm text-gray-700">2 hours ago</p>
-                  <p className="text-sm font-medium text-green-600">WON</p>
+                  <p className="text-sm text-gray-700">1 hour ago</p>
+                  <p className="text-sm font-medium text-green-600">Verified</p>
                 </div>
               </div>
             </div>
@@ -65,12 +65,12 @@ function Profile() {
             <div className="border-b border-pink-800/60 py-3">
               <div className="flex justify-between items-center">
                 <div>
-                  <p className="font-medium">Placed 1.2 FLOW</p>
-                  <p className="text-sm text-gray-700">"Will FLOW become leading green chain"</p>
+                  <p className="font-medium">Trump Campaign</p>
+                  <p className="text-sm text-gray-700">"Trump Announces Major Policy Shift for 2024 Election"</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-sm text-gray-700">5 hours ago</p>
-                  <p className="text-sm font-medium text-green-600">Pending</p>
+                  <p className="text-sm text-gray-700">3 hours ago</p>
+                  <p className="text-sm font-medium text-yellow-600">Pending</p>
                 </div>
               </div>
             </div>
