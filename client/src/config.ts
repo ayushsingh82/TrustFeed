@@ -1,27 +1,18 @@
-import { createPublicClient, createWalletClient , http, custom } from 'viem'
+import { createPublicClient, createWalletClient, http, custom } from 'viem'
 import { privateKeyToAccount } from 'viem/accounts'
-import { flowTestnet , gnosisChiado} from 'viem/chains'
+import { gnosisChiado } from 'viem/chains'
 
-
-
-
-const chiadoTestnet = {
-  id: 10200,
-  name: 'Gnosis Chiado',
-  network: 'chiado',
+// Chain configuration for wallet connection
+export const chainConfig = {
+  chainId: '0x27d8', // 10200 in hex (Gnosis Chiado)
+  chainName: 'Gnosis Chiado',
   nativeCurrency: {
-    decimals: 18,
     name: 'XDAI',
     symbol: 'XDAI',
+    decimals: 18
   },
-  rpcUrls: {
-    default: {
-      http: ['https://gnosis-chiado.drpc.org']
-    },
-    public: {
-      http: ['https://gnosis-chiado.drpc.org']
-    }
-  }
+  rpcUrls: ['https://gnosis-chiado.drpc.org'],
+  blockExplorerUrls: ['https://blockscout.chiadochain.net']
 }
 
 // Public client
@@ -32,7 +23,7 @@ export const publicClient = createPublicClient({
 
 // Wallet client
 export const walletClient = createWalletClient({
-  chain: chiadoTestnet,
+  chain: gnosisChiado,
   transport: custom(window.ethereum)
 })
 
@@ -47,12 +38,6 @@ export const getWalletClient = () => {
   }
   return null
 }
-
-// Chain configuration for wallet connection
-
-
-// JSON-RPC Account
-// export const [account] = await walletClient.getAddresses()
 
 // Local Account
 export const account = privateKeyToAccount('0xdf57089febbacf7ba0bc227dafbffa9fc08a93fdc68e1e42411a14efcf23656e')

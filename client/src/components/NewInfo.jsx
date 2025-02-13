@@ -7,6 +7,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai"
 import { publicClient } from '../config'
 import { wagmiAbi } from '../abi'
 import styled from 'styled-components'
+import Navbar from './Navbar'
 
 // Add this near the top of the component
 const VerifyButton = styled.button`
@@ -168,21 +169,7 @@ function NewInfo() {
 
   return (
     <div className="min-h-screen bg-pink-200 flex flex-col items-center justify-center p-8">
-      {/* Header */}
-      <div className="w-full max-w-3xl mb-16 z-10">
-        <div className="flex flex-col items-center mb-4">
-          <h1 
-            onClick={() => navigate('/')}
-            className="text-3xl font-bold text-pink-600 cursor-pointer hover:text-pink-500 transition-colors mb-4"
-          >
-            Fileverse
-          </h1>
-          <div className="bg-blue-500 rounded-2xl p-2">
-            Connect
-          </div>
-        </div>
-        <div className="h-px bg-pink-800/60 w-full mt-4"></div>
-      </div>
+      <Navbar />
 
       {/* Swipeable Card */}
       <div className="w-full max-w-xl mb-8 relative z-20">

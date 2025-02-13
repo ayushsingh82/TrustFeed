@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-
+import { ConnectButton } from './ConnectButton'
 
 function Home() {
   const navigate = useNavigate()
@@ -13,7 +13,7 @@ function Home() {
             🚀 🎯 🎊
           </div>
           <h1 className="text-3xl md:text-3xl font-bold text-pink-600 mb-8">
-            Fileverse 
+            PrediFlow
           </h1>
           <p className="text-xl text-black mb-12">
             <span className="px-4 py-2 rounded-lg text-sm font-bold">
@@ -28,6 +28,9 @@ function Home() {
             </span>
           </p>
           <div className="flex justify-center gap-4">
+            <div className="bg-blue-500 rounded-2xl p-2">
+              <ConnectButton />
+            </div>
             <button 
               onClick={() => navigate('/news')}
               className="bg-blue-600 text-white font-bold py-3 px-8 rounded-2xl border-2 border-blue-600 transition-colors text-xl"

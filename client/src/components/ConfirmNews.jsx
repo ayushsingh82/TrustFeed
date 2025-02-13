@@ -7,6 +7,7 @@ import { wagmiAbi } from '../abi'
 import { usePrivy } from '@privy-io/react-auth'
 import { createPublicClient , http } from 'viem'
 import { createWalletClient ,custom } from 'viem'
+import Navbar from './Navbar'
 
 const chiadoTestnet = {
   id: 10200,
@@ -134,21 +135,7 @@ function ConfirmNews() {
 
   return (
     <div className="min-h-screen bg-pink-200 flex flex-col items-center justify-center p-8">
-      {/* Header with Wallet Connection */}
-      <div className="w-full max-w-3xl mb-16">
-        <div className="flex flex-col items-center mb-4">
-          <h1 
-            onClick={() => navigate('/')}
-            className="text-3xl font-bold text-pink-600 cursor-pointer hover:text-pink-500 transition-colors mb-4"
-          >
-            PrediFlow
-          </h1>
-          <div className="bg-blue-500 rounded-2xl p-2">
-           Connect
-          </div>
-        </div>
-        <div className="h-px bg-pink-800/60 w-full mt-4"></div>
-      </div>
+      <Navbar />
 
       {/* Purchase Form */}
       <div className="w-full max-w-xl mb-16">
