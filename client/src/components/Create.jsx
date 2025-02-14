@@ -38,7 +38,6 @@ function Create() {
   const navigate = useNavigate()
   const { user } = usePrivy()
   
-  const [question, setQuestion] = useState('')
   const [description, setDescription] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -102,10 +101,10 @@ function Create() {
       // Prepare the contract write
       const { request } = await publicClient.simulateContract({
         account: user.wallet.address,
-        address: '0x5a8E771b5D0B3d2e4d218478CB7C9029d00c4e5a',
+        address: '0xE9061F92bA9A3D9ef3f4eb8456ac9E552B3Ff5C8',
         abi: wagmiAbi,
         functionName: 'submitQuestion',
-        args: [question],
+        args: [description],
         value: 0n,
       })
 
@@ -119,12 +118,12 @@ function Create() {
       const receipt = await publicClient.waitForTransactionReceipt({ hash })
       console.log('Transaction receipt:', receipt)
 
-      setSuccess('Prediction created successfully!')
-      setTimeout(() => navigate('/live-bets'), 2000)
+      setSuccess('News added successfully!')
+      setTimeout(() => navigate('/news'), 2000)
 
     } catch (err) {
-      console.error('Error creating prediction:', err)
-      setError(err.message || 'Failed to create prediction. Please try again.')
+      console.error('Error creating news:', err)
+      setError(err.message || 'Failed to add news. Please try again.')
     } finally {
       setLoading(false)
     }
@@ -137,28 +136,14 @@ function Create() {
       <div className="w-full max-w-xl mb-16">
         <div className="bg-pink-300 rounded-2xl p-8 border-2 border-pink-500">
           <div className="flex items-center justify-center gap-3 mb-8">
-            <FaQuestionCircle className="text-pink-400 text-3xl" />
-            <h2 className="text-2xl font-bold text-white text-center">Add news's onchain</h2>
+            <FaNewspaper className="text-pink-400 text-3xl" />
+            <h2 className="text-2xl font-bold text-white text-center">Add News</h2>
           </div>
           
           {error && <p className="text-red-500 mb-4 text-center">{error}</p>}
           {success && <p className="text-green-500 mb-4 text-center">{success}</p>}
           
           <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Title Input */}
-            <div className="bg-pink-200 p-5 rounded-xl border border-pink-400">
-              <label className="block text-black text-sm font-semibold mb-2">
-                News Title
-              </label>
-              <input
-                value={question}
-                onChange={(e) => setQuestion(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl bg-white border-2 border-pink-400 text-black placeholder-gray-500 focus:outline-none focus:border-pink-500 transition-colors"
-                placeholder="E.g., SpaceX Successfully Launches Starship for Mars Mission"
-                required
-              />
-            </div>
-
             {/* Description Input */}
             <div className="bg-pink-200 p-5 rounded-xl border border-pink-400">
               <label className="block text-black text-sm font-semibold mb-2">
@@ -168,8 +153,8 @@ function Create() {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 className="w-full px-4 py-3 rounded-xl bg-white border-2 border-pink-400 text-black placeholder-gray-500 focus:outline-none focus:border-pink-500 transition-colors"
-                placeholder="Enter detailed news description..."
-                rows="4"
+                placeholder="Enter your news description..."
+                rows="6"
                 required
               />
             </div>

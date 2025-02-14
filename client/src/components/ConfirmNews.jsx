@@ -104,7 +104,7 @@ function ConfirmNews() {
       // Prepare the contract write
       const { request } = await publicClient.simulateContract({
         account: user.wallet.address,
-        address: '0x5a8E771b5D0B3d2e4d218478CB7C9029d00c4e5a',
+        address: '0xE9061F92bA9A3D9ef3f4eb8456ac9E552B3Ff5C8',
         abi: wagmiAbi,
         functionName: 'depositFunds',
         args: [amountInWei],
@@ -122,7 +122,7 @@ function ConfirmNews() {
       console.log('Transaction receipt:', receipt)
 
       setSuccess('Funds deposited successfully!')
-      setTimeout(() => navigate('/live-bets'), 2000)
+      setTimeout(() => navigate('/newinfo'), 2000)
 
     } catch (err) {
       console.error('Error depositing funds:', err)
@@ -142,7 +142,7 @@ function ConfirmNews() {
         <div className="bg-pink-300 rounded-2xl p-8 border-2 border-pink-500">
           <div className="flex items-center justify-center gap-3 mb-8">
             <FaShoppingCart className="text-pink-400 text-3xl" />
-            <h2 className="text-2xl font-bold text-white text-center">Purchase Shares</h2>
+            <h2 className="text-2xl font-bold text-white text-center">VERIFY NEWS </h2>
           </div>
           
           <form onSubmit={handleSubmit} className="space-y-6">
